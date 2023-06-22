@@ -1,0 +1,51 @@
+{
+  "Books": [
+    {
+      "id": 3,
+      "name": "The Monk Who sold His Ferrari",
+      "imgsrc": "../../assets/image1.jpg",
+      "author": "Robin Sharma",
+      "edition": "First"
+    },
+    {
+      "id": 4,
+      "name": "Think Straight",
+      "imgsrc": "../../assets/image3.jpg",
+      "author": "Dariuos Foroux",
+      "edition": "second"
+    },
+    {
+      "id": 5,
+      "name": "A Better India A Better World",
+      "imgsrc": "../../assets/image.jpg",
+      "author": "Narayan Murthy",
+      "edition": "Fifth"
+    }
+  ],
+  "students": [
+    {
+      "id": 8,
+      "name": "jnanavi",
+      "usn": "2BL19EE019",
+      "semester": "5th",
+      "email": "jnanavi19@gmail.com"
+    },
+    {
+      "id": 9,
+      "name": "Akshata",
+      "usn": "2BL19EC0",
+      "semester": "5th",
+      "email": "Akshata123@gmail.com"
+    },
+    {
+      "id": 10,
+      "name": "poojashree",
+      "usn": "2BL19EC058",
+      "semester": "5th",
+      "email": "poojabadiger582@gmail.com"
+    }
+  ],
+  "login": {
+    "name": "typicode"
+  }
+}

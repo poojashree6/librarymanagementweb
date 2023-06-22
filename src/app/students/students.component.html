@@ -1,0 +1,97 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <form class="d-flex" role="search">
+            <a>
+                <button (click)="onclickpoststudentDetails()" type="button" class="btn btn-success"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Add Student
+                </button>
+            </a>
+            <a>
+                <input type="search" class="form-control ms-2" name="searchBooks" placeholder="Search Student"
+                    (input)="searchStudents($event)">
+            </a>
+        </form>
+    </div>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Student Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="studentform">
+
+                    <div class="form-group">
+                        <label for="name">Student Name</label>
+                        <input type="text" formControlName="name" name="fname" class="form-control" id="name"
+                            aria-describedby="emailHelp" placeholder="Enter student Name">
+                            <span style="color: red;" *ngIf="name && name.invalid && name.touched">This input field is not valid</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="usn">USN</label>
+                        <input type="text" formControlName="usn" class="form-control" id="usn" placeholder="Enter USN">
+                        <span style="color: red;" *ngIf="usn && usn.invalid && usn.touched">This input field is not valid</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="semester">Semester</label>
+                        <input type="text" formControlName="semester" class="form-control" id="semester"
+                            placeholder="Enter Semester">
+                        <span style="color: red;" *ngIf="semester && semester.invalid && semester.touched">This input field is not valid</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" formControlName="email" class="form-control" id="email"
+                            placeholder="Enter Email">
+                     <span style="color: red;" *ngIf="email && email.invalid && email.touched">This input field is not valid</span>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">cancel</button>
+                <button type="button" (click)="poststudentDetails()" class="btn btn-primary"
+                    *ngIf="showadd">Add</button>
+                <button type="button" (click)="updatestudentDetails()" class="btn btn-primary"
+                    *ngIf="showupdate">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" mt-3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Student Id</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">USN</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Email</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of StudentData">
+                <td>{{row.id}}</td>
+                <td>{{row.name}}</td>
+                <td>{{row.usn}}</td>
+                <td>{{row.semester}}</td>
+                <td>{{row.email}}</td>
+
+                <td><button (click)="onEdit(row)" class="btn btn-warning" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Edit</button>&nbsp;
+                    <button (click)="deletestudentDetails(row)" class="btn btn-danger">Delete</button>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>

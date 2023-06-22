@@ -1,0 +1,87 @@
+<!-- Button trigger modal -->
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <form class="d-flex" role="search">
+            <a>
+                <button (click)="OnclickpostBookDetails()" type="button" class="btn btn-success" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Add Book
+                </button>
+            </a>
+            <a>
+                <input type="search" class="form-control ms-2" name="searchBooks" placeholder="Search Books"
+                    (input)="searchBook($event)">
+            </a>
+        </form>
+    </div>
+</nav>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: yellowgreen;">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Book Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue">
+                    <div class="form-group">
+                        <label for="name">Book Name</label>
+                        <input type="text" formControlName="name" name="name" class="form-control" id="name"
+                            aria-describedby="emailHelp" placeholder="Enter Book Name">
+                        
+                             <span style="color: red;" *ngIf="name && name.invalid && name.touched">This input field is not valid</span>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" formControlName="author" class="form-control" id="author"
+                            placeholder="Enter Author">
+                        <span style="color: red;" *ngIf="author && author.invalid && author.touched">This input field is not valid</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edition">Edition</label>
+                        <input type="text" formControlName="edition" class="form-control" id="edition"
+                            placeholder="Enter Edition">
+                    <span style="color: red;" *ngIf="edition && edition.invalid && edition.touched">This input field is not valid</span>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer" style="background-color: yellowgreen;">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">cancel</button>
+                <button type="button" (click)="postBookDetails()" class="btn btn-primary"  [disabled]="formValue.invalid" *ngIf="showadd">Add</button>
+                <button type="button" (click)="updateBookDetails()" class="btn btn-primary"
+                    *ngIf="showupdate">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" mt-3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Book Id</th>
+                <th scope="col">Book Name</th>
+                <th scope="col">Author</th>
+                <th scope="col">Eidition</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of BookData">
+                <td>{{row.id}}</td>
+                <td>{{row.name}}</td>
+                <td>{{row.author}}</td>
+                <td>{{row.edition}}</td>
+                <td>
+                    <button (click)="onEdit(row)" class="btn btn-warning" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Edit</button>&nbsp;
+                    <button (click)="deleteBookDetails(row)" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
